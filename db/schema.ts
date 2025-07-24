@@ -1,11 +1,4 @@
-import {
-  pgTable,
-  varchar,
-  timestamp,
-  numeric,
-  text,
-  pgEnum,
-} from "drizzle-orm/pg-core";
+import { pgTable, timestamp, numeric, text, pgEnum } from "drizzle-orm/pg-core";
 import { z } from "zod";
 import { relations } from "drizzle-orm";
 import {
