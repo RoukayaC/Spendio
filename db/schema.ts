@@ -6,6 +6,7 @@ import {
   createSelectSchema,
   createUpdateSchema,
 } from "drizzle-zod";
+import { createId } from "@paralleldrive/cuid2";
 
 //enums
 export const accountTypeEnum = pgEnum("account_type", [
@@ -28,14 +29,18 @@ export const recurringTypeEnum = pgEnum("recurring_type", [
 
 //tables
 export const users = pgTable("users", {
-  id: text("id").primaryKey(),
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => createId()),
   clerkId: text("clerk_id").unique().notNull(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
 export const accounts = pgTable("accounts", {
-  id: text("id").primaryKey(),
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => createId()),
   userId: text("user_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
@@ -46,7 +51,10 @@ export const accounts = pgTable("accounts", {
 });
 
 export const categories = pgTable("categories", {
-  id: text("id").primaryKey(),
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => createId()),
+
   userId: text("user_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
@@ -57,7 +65,10 @@ export const categories = pgTable("categories", {
 });
 
 export const transactions = pgTable("transactions", {
-  id: text("id").primaryKey(),
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => createId()),
+
   userId: text("user_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
