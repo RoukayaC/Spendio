@@ -9,7 +9,6 @@ import {
   accountUpdateSchema,
 } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
-import { createId } from "@paralleldrive/cuid2";
 import { HTTPException } from "hono/http-exception";
 
 const app = new Hono()
