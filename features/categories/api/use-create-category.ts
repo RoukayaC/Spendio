@@ -7,7 +7,7 @@ type ResponseType = InferResponseType<typeof client.api.categories.$post>
 type RequestType = InferRequestType<typeof client.api.categories.$post>["json"]
 
 export const useCreateCategory = () => {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient() 
 
   const mutation = useMutation<ResponseType, Error, RequestType>({
     mutationFn: async (json) => {
